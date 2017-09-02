@@ -1,9 +1,9 @@
 
 trait Task {
   type ConcreteJSONConfig
-  val parser : JSONConfigParser[ConcreteJSONConfig]
+  val configParser : JSONConfigParser[ConcreteJSONConfig]
   def run(jsonString: String): Unit = {
-    val cfg = parser.parse(jsonString)
+    val cfg = configParser.parse(jsonString)
     execute(cfg)
   }
 

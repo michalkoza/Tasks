@@ -2,7 +2,7 @@ object UploadExtractor extends Task {
 
   override type ConcreteJSONConfig = UploadExtractionConfig
 
-  object parser extends JSONConfigParser[UploadExtractionConfig] {
+  object configParser extends JSONConfigParser[UploadExtractionConfig] {
 
     override def parse(jsonString: String): UploadExtractionConfig = {
       println("Parsing " + jsonString)
@@ -17,6 +17,7 @@ object UploadExtractor extends Task {
 
   override def execute(cfg: ConcreteJSONConfig): Unit = {
     println("Doing UploadExtraction proprietary things")
+    println("Config ID = "+cfg.id)
   }
 
 }
