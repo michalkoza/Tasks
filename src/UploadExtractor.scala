@@ -1,21 +1,19 @@
 object UploadExtractor extends Task {
 
-  override type ConcreteJSONConfig = UploadExtractionConfig
+  object configParser extends JSONConfigParser[Config] {
 
-  object configParser extends JSONConfigParser[UploadExtractionConfig] {
-
-    override def parse(jsonString: String): UploadExtractionConfig = {
+    override def parse(jsonString: String): Config = {
       println("Parsing " + jsonString)
-      val cfg = new UploadExtractionConfig()
+      val cfg = new Config()
       println(cfg.toString())
       cfg
     }
   }
 
   case class Blob(account: String, key: String, container: String, path: String)
-  case class UploadExtractionConfig(id: String = "UploadExtractionConfig", blob: Blob = new Blob("a", "a", "a", "a"), info: String = "emptyinfo")
+  case class Config(id: String = "UploadExtractionConfig", blob: Blob = new Blob("a", "a", "a", "a"), info: String = "emptyinfo")
 
-  override def execute(cfg: ConcreteJSONConfig): Unit = {
+  override def execute(cfg: Config): Unit = {
     println("Doing UploadExtraction proprietary things")
     println("Config ID = "+cfg.id)
   }
