@@ -17,6 +17,8 @@ object UploadExtractor extends Task{
     }
   }
 
-  override def execute(cfg: ConcreteJSONConfig): Unit = {println("")}
+  override def execute(cfg: ConcreteJSONConfig): Unit = {
+    println("Doing UploadExtraction proprietary things")
+  }
 
 }
