@@ -1,21 +1,19 @@
-
-object UploadExtractor extends Task{
+object UploadExtractor extends Task {
 
   override type ConcreteJSONConfig = UploadExtractionConfig
-  override val parser = UploadExtractionConfigParser
 
-  case class Blob(account: String, key: String, container: String, path: String)
-  case class UploadExtractionConfig(id: String = "UploadExtractionConfig")
-
-  object UploadExtractionConfigParser extends JSONConfigParser[UploadExtractionConfig]{
+  object parser extends JSONConfigParser[UploadExtractionConfig] {
 
     override def parse(jsonString: String): UploadExtractionConfig = {
-      println ("Parsing "+jsonString)
+      println("Parsing " + jsonString)
       val cfg = new UploadExtractionConfig()
-      println (cfg.toString())
+      println(cfg.toString())
       cfg
     }
   }
+
+  case class Blob(account: String, key: String, container: String, path: String)
+  case class UploadExtractionConfig(id: String = "UploadExtractionConfig", blob: Blob = new Blob("a", "a", "a", "a"), info: String = "emptyinfo")
 
   override def execute(cfg: ConcreteJSONConfig): Unit = {
     println("Doing UploadExtraction proprietary things")

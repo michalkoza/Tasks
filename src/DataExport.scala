@@ -1,13 +1,8 @@
 object DataExport extends Task {
 
   override type ConcreteJSONConfig = DataExportConfig
-  override val parser = DataExportConfigParser
 
-  case class Blob(account: String, key: String, container: String, path: String)
-
-  case class DataExportConfig(id: String = "DataExportConfig")
-
-  object DataExportConfigParser extends JSONConfigParser[DataExportConfig] {
+  object parser extends JSONConfigParser[DataExportConfig] {
 
     override def parse(jsonString: String): DataExportConfig = {
       println("Parsing " + jsonString)
@@ -16,6 +11,10 @@ object DataExport extends Task {
       cfg
     }
   }
+
+  case class Blob(account: String, key: String, container: String, path: String)
+  case class DataExportConfig(id: String = "UploadExtractionConfig", blob: Blob = new Blob("a", "a", "a", "a"))
+
 
   override def execute(cfg: ConcreteJSONConfig): Unit = {
     println("Doing DataExportConfig proprietary things")
