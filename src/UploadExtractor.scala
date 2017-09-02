@@ -1,6 +1,11 @@
+import UploadExtractor.configParser.Config
+
 object UploadExtractor extends Task {
 
-  object configParser extends JSONConfigParser[Config] {
+  object configParser extends JSONConfigParser {
+
+    case class Blob(account: String, key: String, container: String, path: String)
+    case class Config(id: String = "UploadExtractionConfig", blob: Blob = new Blob("a", "a", "a", "a"), info: String = "emptyinfo")
 
     override def parse(jsonString: String): Config = {
       println("Parsing " + jsonString)
@@ -10,12 +15,8 @@ object UploadExtractor extends Task {
     }
   }
 
-  case class Blob(account: String, key: String, container: String, path: String)
-  case class Config(id: String = "UploadExtractionConfig", blob: Blob = new Blob("a", "a", "a", "a"), info: String = "emptyinfo")
-
   override def execute(cfg: Config): Unit = {
     println("Doing UploadExtraction proprietary things")
-    println("Config ID = "+cfg.id)
+    //println("Config ID = "+cfg.)
   }
-
 }

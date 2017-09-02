@@ -1,7 +1,7 @@
 
-trait Task {
-  type Config
-  val configParser : JSONConfigParser[Config]
+abstract class Task {
+  val configParser : JSONConfigParser
+  type Config = configParser.Config
   def run(jsonString: String): Unit = {
     val cfg = configParser.parse(jsonString)
     execute(cfg)
