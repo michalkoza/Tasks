@@ -1,8 +1,6 @@
-import UploadExtractor.configParser.Config
-
 object UploadExtractor extends Task {
 
-  object configParser extends JSONConfigParser {
+  val configParser = new JSONConfigParser {
 
     case class Blob(account: String, key: String, container: String, path: String)
     case class Config(id: String = "UploadExtractionConfig", blob: Blob = new Blob("a", "a", "a", "a"), info: String = "emptyinfo")

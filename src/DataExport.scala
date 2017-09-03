@@ -1,6 +1,6 @@
 object DataExport extends Task {
 
-  object configParser extends JSONConfigParser {
+  val configParser = new JSONConfigParser {
 
     case class Blob(account: String, key: String, container: String, path: String)
     case class Config(id: String = "DataExportConfig", blob: Blob = new Blob("a", "a", "a", "a"))
